@@ -1,25 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [tasks, setTasks] = useState<string[]>([
+    "Buy Groceries",
+    "Wake up early",
+    "Go to class",
+  ]);
+  const [newTask, setNewTask] = useState<string>("");
+  const addTask = () => {
+    if (newTask.trim()) {
+      setTasks([...tasks, newTask.trim()]);
+      setNewTask("");
+    }
+  };
+  const removeTask = (index: number) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div id='body'>
+      <h1>Task Tracker</h1>
+    <div>
+    <input id='writeTask' type="text" placeholder='Enter a new task' value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
+<button id='add'
+onClick={addTask}
+>
+Add
+</button>
+</div>
+<ul>
+  {tasks.map((task, index) => (
+  <li key = {index}>
+  <div>
+    <input type='checkbox'/>
+    <span>{task}</span>
+  </div>
+   <button id='del' onClick={() => removeTask(index)}> x
+  </button>
+  </li>
+  ))}
+</ul>
+</div>
   );
 }
 
