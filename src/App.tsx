@@ -33,7 +33,7 @@ Add
   {tasks.map((task, index) => (
   <li key = {index}>
   <div>
-    <input type='checkbox'/>
+    <input id='check' type='checkbox'/>
     <span>{task}</span>
   </div>
    <button id='del' onClick={() => removeTask(index)}> x

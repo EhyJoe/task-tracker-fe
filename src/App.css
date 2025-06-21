@@ -56,5 +56,14 @@ h1{
 ul{
   list-style: none;
   padding: 0;
-
-}
+ }
+ #check {
+  margin-right: 0.85rem;
+  width: 1rem;
+  height: 1rem;
+ }
+ li {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+ }
