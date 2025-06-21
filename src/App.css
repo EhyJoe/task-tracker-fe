@@ -5,7 +5,8 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  min-height: 100vh
+  min-height: 100vh;
+  font-weight: 500;
 }
 h1{
   font-size: 1.5rem;
@@ -35,11 +36,8 @@ h1{
  font-size: 1rem;
   border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   border: 1px solid lightgray;
- }
-
- #add:hover {
   background-color: green;
-  transition-duration: 0.5s;
+  font-weight: bold;
  }
 
  #del {
@@ -53,4 +51,10 @@ h1{
 #del:hover {
   background-color: red;
   transition-duration: 0.6s;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+
 }
