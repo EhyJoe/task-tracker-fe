@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([
@@ -19,29 +19,35 @@ function App() {
   };
 
   return (
-    <div id='body'>
+    <div id="body">
       <h1>Task Tracker</h1>
-    <div>
-    <input id='writeTask' type="text" placeholder='Enter a new task' value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
-<button id='add'
-onClick={addTask}
->
-Add
-</button>
-</div>
-<ul>
-  {tasks.map((task, index) => (
-  <li key = {index}>
-  <div>
-    <input id='check' type='checkbox'/>
-    <span>{task}</span>
-  </div>
-   <button id='del' onClick={() => removeTask(index)}> x
-  </button>
-  </li>
-  ))}
-</ul>
-</div>
+      <div id='input-wrapper'>
+        <input
+          id="task-input"
+          type="text"
+          placeholder="Enter a new task"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button id="add-button" onClick={addTask}>
+          Add
+        </button>
+      </div>
+      <ul>
+        {tasks.map((task, index) => (
+          <li key={index}>
+            <div>
+              <input id="check" type="checkbox" />
+              <span>{task}</span>
+            </div>
+            <button id="del" onClick={() => removeTask(index)}>
+              {" "}
+              x
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

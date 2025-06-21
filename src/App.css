@@ -8,9 +8,10 @@ body {
   min-height: 100vh;
   font-weight: 500;
 }
-h1{
+
+h1 {
   font-size: 1.5rem;
- text-align: center;
+  text-align: center;
 }
 
 #body {
@@ -22,48 +23,60 @@ h1{
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-#writeTask {
-  flex-grow: 1;
+#task-input {
+  flex: 1;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   border: 1px solid lightgray;
-  cursor:auto;
+  cursor: auto;
   margin-right: 7px;
 }
- #add {
+#input-wrapper{
+  display: flex;
+}
+#add-button {
   padding: 0.5rem 1rem;
- font-size: 1rem;
+  font-size: 1rem;
   border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   border: 1px solid lightgray;
   background-color: green;
   font-weight: bold;
- }
+}
 
- #del {
+#del {
   border: none;
   background: none;
   font-size: 1rem;
   color: gray;
-   border-radius: 0.3rem 0.3rem 0.3rem 0.3rem;
- }
+  border-radius: 0.3rem 0.3rem 0.3rem 0.3rem;
+}
 
 #del:hover {
   background-color: red;
   transition-duration: 0.6s;
 }
 
-ul{
+ul {
   list-style: none;
   padding: 0;
- }
- #check {
+}
+
+#check {
   margin-right: 0.85rem;
   width: 1rem;
   height: 1rem;
- }
- li {
+}
+
+li {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 0.5rem;
   padding-bottom: 0.5rem;
- }
+  display: flex;
+  flex: 1;
+}
+
+li div {
+  flex: 1;
+  display: flex;
+}
