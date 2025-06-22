@@ -1,33 +1,64 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "./App.css";
+import axios from "axios";
+
+interface TaskType {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 function App() {
-  const [tasks, setTasks] = useState<string[]>([
-    "Buy Groceries",
-    "Wake up early",
-    "Go to class",
-  ]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [newTask, setNewTask] = useState<string>("");
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNewTask(event.target.value);
+  };
+
   const addTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, newTask.trim()]);
-      setNewTask("");
-    }
+    axios
+      .post("https://b89b-102-89-68-159.ngrok-free.app/tasks", {
+        title: newTask,
+      })
+      .then(() => {
+        setNewTask("");
+        getAllTask();
+      });
   };
-  const removeTask = (index: number) => {
-    setTasks(tasks.filter((_, i) => i !== index));
+
+  const removeTask = (id: number) => {
+    axios
+      .delete("https://b89b-102-89-68-159.ngrok-free.app/tasks/" + id)
+      .then(() => {
+        getAllTask();
+      });
   };
+
+  const getAllTask = () => {
+    axios
+      .get("https://b89b-102-89-68-159.ngrok-free.app/tasks/all", {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      })
+      .then((tasks) => {
+        setTasks(tasks.data);
+      });
+  };
+  useEffect(() => {
+    getAllTask();
+  }, []);
 
   return (
     <div id="body">
       <h1>Task Tracker</h1>
-      <div id='input-wrapper'>
+      <div id="input-wrapper">
         <input
           id="task-input"
           type="text"
           placeholder="Enter a new task"
           value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
+          onChange={handleChange}
         />
         <button id="add-button" onClick={addTask}>
           Add
@@ -38,10 +69,9 @@ function App() {
           <li key={index}>
             <div>
               <input id="check" type="checkbox" />
-              <span>{task}</span>
+              <span>{task.title}</span>
             </div>
-            <button id="del" onClick={() => removeTask(index)}>
-              {" "}
+            <button id="del" onClick={()=>removeTask(task.id)}>
               x
             </button>
           </li>

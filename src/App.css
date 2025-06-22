@@ -68,6 +68,10 @@ ul {
   height: 1rem;
 }
 
+#add-button {
+  cursor: pointer;
+}
+
 li {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 0.5rem;
